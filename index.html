@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI成长实验室 ｜ AI Growth Lab</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.umd.js"></script>
+
+    <style>
+      body {
+        font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
+        background-color: #0d0d0d;
+        color: #f0f0f0;
+        overflow-x: hidden;
+      }
+      .bento {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        transition: all 0.3s ease-in-out;
+      }
+      .bento:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+      }
+      .cyber-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(to right, #0ff, #0ff0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen p-8">
+    <header class="text-center mb-12">
+      <h1 class="cyber-title">AI成长实验室</h1>
+      <p class="text-gray-400 mt-4 text-lg">
+        Welcome to the future of learning, self-optimization, and growth.
+      </p>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <!-- 晨间唤醒 -->
+      <a href="/morning-light/" class="bento">
+        <h2 class="text-2xl font-bold mb-2">🌅 晨间唤醒</h2>
+        <p class="text-sm text-gray-300">
+          结合Huberman等神经科学研究，帮助你高效启动白天，构建健康晨间节律。
+        </p>
+      </a>
+
+      <!-- 神经可塑性 -->
+      <a href="/neuroplasticity/" class="bento">
+        <h2 class="text-2xl font-bold mb-2">🧠 神经可塑性</h2>
+        <p class="text-sm text-gray-300">
+          打开大脑学习力，探索如何通过练习、专注与休息机制改变大脑结构。
+        </p>
+      </a>
+
+      <!-- 即将上线模块占位 -->
+      <div class="bento opacity-40 cursor-not-allowed">
+        <h2 class="text-2xl font-bold mb-2">🔐 Reset 7</h2>
+        <p class="text-sm text-gray-400">敬请期待：7天状态重建计划</p>
+      </div>
+
+      <div class="bento opacity-40 cursor-not-allowed">
+        <h2 class="text-2xl font-bold mb-2">🚀 AI成长课程</h2>
+        <p class="text-sm text-gray-400">即将上线：高杠杆AI工作流实战营</p>
+      </div>
+    </main>
+
+    <footer class="text-center text-gray-600 text-sm mt-12">
+      <p>
+        © 2025 锦成 · Powered by GitHub + Cloudflare Pages
+        <i class="fa-solid fa-robot"></i>
+      </p>
+    </footer>
+  </body>
+</html>
 
