@@ -15,80 +15,337 @@
     />
 
     <!-- Framer Motion -->
-    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.umd.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.umd.js"></script>
+    <!-- Note: Updated to a slightly newer Framer Motion version, ensure compatibility or use your specified one -->
 
     <style>
       body {
-        font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
-        background-color: #0d0d0d;
-        color: #f0f0f0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background-color: #0a0a0a; /* Slightly darker background */
+        color: #e0e0e0; /* Slightly softer white */
         overflow-x: hidden;
+        scroll-behavior: smooth;
       }
-      .bento {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(12px);
-        border-radius: 1.5rem;
-        padding: 2rem;
+
+      /* Highlight color variables */
+      :root {
+        --highlight-color: #00ffff; /* Cyan */
+        --highlight-color-rgb: 0, 255, 255;
+      }
+
+      .bento-grid-item {
+        background: rgba(30, 30, 30, 0.6); /* Darker, more translucent background */
+        border: 1px solid rgba(var(--highlight-color-rgb), 0.2); /* Subtle highlight border */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px); /* For Safari */
+        border-radius: 1.5rem; /* 24px */
+        padding: 1.5rem 2rem; /* 24px 32px */
         transition: all 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Pushes content and icons apart if needed */
       }
-      .bento:hover {
-        transform: scale(1.03);
-        box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+
+      .bento-grid-item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 0 30px rgba(var(--highlight-color-rgb), 0.3), 0 0 60px rgba(var(--highlight-color-rgb), 0.1);
+        border-color: rgba(var(--highlight-color-rgb), 0.5);
       }
-      .cyber-title {
-        font-size: 3.5rem;
+
+      .cyber-title-main {
+        font-size: clamp(2.5rem, 6vw, 5rem); /* Responsive font size */
         font-weight: 800;
-        background: linear-gradient(to right, #0ff, #0ff0);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: var(--highlight-color);
+        text-shadow: 0 0 10px rgba(var(--highlight-color-rgb), 0.7),
+                     0 0 20px rgba(var(--highlight-color-rgb), 0.5),
+                     0 0 30px rgba(var(--highlight-color-rgb), 0.3);
+        margin-bottom: 0.5rem; /* 8px */
+      }
+      .cyber-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.25rem); /* Responsive font size */
+        color: #a0a0a0; /* Lighter gray for subtitle */
+        letter-spacing: 0.05em;
+      }
+
+      .bento-title-cn {
+        font-size: clamp(1.75rem, 4vw, 2.5rem); /* 24px to 40px */
+        font-weight: 700;
+        color: #f0f0f0;
+        margin-bottom: 0.5rem; /* 8px */
+        line-height: 1.2;
+      }
+
+      .bento-title-en {
+        font-size: clamp(0.75rem, 2vw, 0.875rem); /* 12px to 14px */
+        font-weight: 400;
+        color: var(--highlight-color);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem; /* 16px */
+        opacity: 0.8;
+      }
+
+      .bento-description {
+        font-size: clamp(0.875rem, 2.5vw, 1rem); /* 14px to 16px */
+        color: #b0b0b0; /* Slightly lighter gray for description */
+        line-height: 1.6;
+      }
+
+      .bento-icon-wrapper {
+        margin-top: auto; /* Pushes icon to the bottom if content is short */
+        padding-top: 1rem; /* Space above icon */
+        text-align: right;
+      }
+      
+      .bento-icon-wrapper .fa-stack {
+        font-size: 2.5rem; /* Base size for stack */
+        color: rgba(var(--highlight-color-rgb),0.15);
+      }
+      .bento-icon-wrapper .fa-stack .main-icon {
+         color: rgba(var(--highlight-color-rgb),0.8);
+         text-shadow: 0 0 15px rgba(var(--highlight-color-rgb), 0.5);
+      }
+
+
+      /* Simple line art / data viz element - placeholder */
+      .data-viz-placeholder {
+        width: 100%;
+        height: 80px;
+        border: 1px dashed rgba(var(--highlight-color-rgb), 0.3);
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        color: rgba(var(--highlight-color-rgb), 0.5);
+        margin-top: 1rem;
+      }
+
+      /* Footer Styling */
+      footer {
+        border-top: 1px solid rgba(var(--highlight-color-rgb), 0.1);
+        padding-top: 2rem; /* 32px */
+      }
+      footer p i {
+        color: var(--highlight-color);
+        opacity: 0.6;
+      }
+
+      /* For disabled items */
+      .disabled-bento {
+        opacity: 0.5;
+        cursor: not-allowed;
+        filter: grayscale(50%);
+      }
+      .disabled-bento:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: rgba(var(--highlight-color-rgb), 0.2);
       }
     </style>
   </head>
 
-  <body class="min-h-screen p-8">
-    <header class="text-center mb-12">
-      <h1 class="cyber-title">AI成长实验室</h1>
-      <p class="text-gray-400 mt-4 text-lg">
-        Welcome to the future of learning, self-optimization, and growth.
+  <body class="min-h-screen p-4 md:p-8">
+    <header class="text-center mb-16 md:mb-24" id="main-header">
+      <h1 class="cyber-title-main">AI成长实验室</h1>
+      <p class="cyber-subtitle">AI GROWTH LAB</p>
+      <p class="text-gray-400 mt-4 text-base md:text-lg max-w-2xl mx-auto">
+        赋能个体进化，探索学习、自我优化与成长的未来。
+        <br class="hidden md:block"/>WELCOME TO THE FUTURE OF LEARNING, SELF-OPTIMIZATION, AND GROWTH.
       </p>
     </header>
 
-    <main class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto" id="bento-container">
+      <!-- Hero Item -->
+      <a href="#" class="bento-grid-item md:col-span-3 group" data-motion-id="hero">
+        <div>
+          <h2 class="bento-title-cn">开启您的AI赋能之旅</h2>
+          <p class="bento-title-en">START YOUR AI-POWERED JOURNEY</p>
+          <p class="bento-description">
+            我们融合前沿AI技术与神经科学，为您打造个性化成长路径。从优化日常节律到重塑学习能力，AI成长实验室是您实现潜能最大化的伙伴。
+          </p>
+        </div>
+        <div class="bento-icon-wrapper">
+            <span class="fa-stack fa-3x">
+                <i class="fa-solid fa-circle fa-stack-2x"></i>
+                <i class="fa-solid fa-brain fa-stack-1x fa-inverse main-icon" style="color: var(--highlight-color);"></i>
+            </span>
+        </div>
+      </a>
+
       <!-- 晨间唤醒 -->
-      <a href="/morning-light/" class="bento">
-        <h2 class="text-2xl font-bold mb-2">🌅 晨间唤醒</h2>
-        <p class="text-sm text-gray-300">
-          结合Huberman等神经科学研究，帮助你高效启动白天，构建健康晨间节律。
-        </p>
+      <a href="/morning-light/" class="bento-grid-item group" data-motion-id="morning">
+        <div>
+          <h2 class="bento-title-cn">晨间唤醒</h2>
+          <p class="bento-title-en">Morning Rituals</p>
+          <p class="bento-description">
+            结合Huberman等神经科学研究，助您高效启动，构建健康晨间节律。
+          </p>
+        </div>
+        <div class="bento-icon-wrapper">
+            <span class="fa-stack fa-2x">
+                <i class="fa-solid fa-square fa-stack-2x"></i>
+                <i class="fa-solid fa-sun fa-stack-1x fa-inverse main-icon"></i>
+            </span>
+        </div>
       </a>
 
       <!-- 神经可塑性 -->
-      <a href="/neuroplasticity/" class="bento">
-        <h2 class="text-2xl font-bold mb-2">🧠 神经可塑性</h2>
-        <p class="text-sm text-gray-300">
-          打开大脑学习力，探索如何通过练习、专注与休息机制改变大脑结构。
-        </p>
+      <a href="/neuroplasticity/" class="bento-grid-item group" data-motion-id="neuro">
+        <div>
+          <h2 class="bento-title-cn">神经可塑性</h2>
+          <p class="bento-title-en">Neuroplasticity</p>
+          <p class="bento-description">
+            释放大脑学习潜能，探索如何通过练习、专注与休息重塑大脑。
+          </p>
+        </div>
+         <div class="bento-icon-wrapper">
+            <span class="fa-stack fa-2x">
+                <i class="fa-solid fa-certificate fa-stack-2x" style="transform: rotate(45deg);"></i>
+                <i class="fa-solid fa-lightbulb fa-stack-1x fa-inverse main-icon"></i>
+            </span>
+        </div>
+      </a>
+      
+      <!-- 数据可视化示例 (勾线图形) -->
+      <div class="bento-grid-item group" data-motion-id="dataviz">
+        <div>
+          <h2 class="bento-title-cn">成长数据洞察</h2>
+          <p class="bento-title-en">Growth Data Insights</p>
+          <p class="bento-description">
+            可视化您的进步，通过数据驱动优化您的成长策略。 (示例图表区)
+          </p>
+        </div>
+        <div class="data-viz-placeholder mt-auto">
+          <svg width="80%" height="60%" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current text-[color:var(--highlight-color)] opacity-70">
+            <path d="M10 70 Q 30 10, 50 50 T 90 60 T 130 20 T 170 70 L 190 40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="50" cy="50" r="3" fill="currentColor"/>
+            <circle cx="90" cy="60" r="3" fill="currentColor"/>
+            <circle cx="130" cy="20" r="3" fill="currentColor"/>
+            <circle cx="170" cy="70" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+
+
+      <!-- 即将上线模块 -->
+      <div class="bento-grid-item disabled-bento" data-motion-id="reset7">
+        <div>
+          <h2 class="bento-title-cn">Reset 7</h2>
+          <p class="bento-title-en">7-Day State Reset</p>
+          <p class="bento-description">敬请期待：七天状态深度重塑计划。</p>
+        </div>
+        <div class="bento-icon-wrapper">
+             <span class="fa-stack fa-2x">
+                <i class="fa-solid fa-circle fa-stack-2x"></i>
+                <i class="fa-solid fa-lock fa-stack-1x fa-inverse main-icon"></i>
+            </span>
+        </div>
+      </div>
+
+      <div class="bento-grid-item disabled-bento" data-motion-id="aicourse">
+        <div>
+          <h2 class="bento-title-cn">AI成长课程</h2>
+          <p class="bento-title-en">AI Growth Courses</p>
+          <p class="bento-description">即将上线：高杠杆AI工作流实战营。</p>
+        </div>
+        <div class="bento-icon-wrapper">
+            <span class="fa-stack fa-2x">
+                <i class="fa-solid fa-circle fa-stack-2x"></i>
+                <i class="fa-solid fa-rocket fa-stack-1x fa-inverse main-icon"></i>
+            </span>
+        </div>
+      </div>
+
+      <!-- Another item to fill grid if needed, or make one span two rows -->
+       <a href="#" class="bento-grid-item group md:col-span-1" data-motion-id="community"> <!-- Example: could be col-span-1 or part of a more complex layout -->
+        <div>
+          <h2 class="bento-title-cn">共创社区</h2>
+          <p class="bento-title-en">Community Hub</p>
+          <p class="bento-description">
+            加入我们的社群，与同路人交流分享，共同加速成长。
+          </p>
+        </div>
+        <div class="bento-icon-wrapper">
+            <span class="fa-stack fa-2x">
+                <i class="fa-solid fa-square fa-stack-2x"></i>
+                <i class="fa-solid fa-users fa-stack-1x fa-inverse main-icon"></i>
+            </span>
+        </div>
       </a>
 
-      <!-- 即将上线模块占位 -->
-      <div class="bento opacity-40 cursor-not-allowed">
-        <h2 class="text-2xl font-bold mb-2">🔐 Reset 7</h2>
-        <p class="text-sm text-gray-400">敬请期待：7天状态重建计划</p>
-      </div>
-
-      <div class="bento opacity-40 cursor-not-allowed">
-        <h2 class="text-2xl font-bold mb-2">🚀 AI成长课程</h2>
-        <p class="text-sm text-gray-400">即将上线：高杠杆AI工作流实战营</p>
-      </div>
     </main>
 
-    <footer class="text-center text-gray-600 text-sm mt-12">
+    <footer class="text-center text-gray-500 text-sm mt-16 md:mt-24 pb-8">
       <p>
-        © 2025 锦成 · Powered by GitHub + Cloudflare Pages
-        <i class="fa-solid fa-robot"></i>
+        © 2025 锦成 (Jincheng) · Powered by You & AI
+        <i class="fa-solid fa-microchip ml-1"></i>
+        <i class="fa-solid fa-brain ml-1"></i>
       </p>
+       <p class="mt-2 text-xs text-gray-600">AI GROWTH LAB IS A PROJECT BY JINCHENG</p>
     </footer>
+
+    <script>
+      const { motion, AnimatePresence, useScroll, useTransform } = FramerMotion;
+
+      // Helper function to create animated components
+      function createAnimatedComponent(element, customProps = {}) {
+        const MotionComponent = motion(element.tagName.toLowerCase());
+        // Create a wrapper div for the motion component
+        const wrapper = document.createElement('div');
+        // Replace the original element with the wrapper
+        element.parentNode.replaceChild(wrapper, element);
+        
+        // Use React-like syntax for creating element with props
+        // This is a simplified way to render, for complex apps use React/Vue
+        // For this vanilla JS setup, we'll manually apply initial styles for animation
+        
+        // Framer Motion's `motion()` HOC needs a component or string tag.
+        // In vanilla JS, we can't easily "render" a component.
+        // Instead, we'll use the imperative animation API or set initial/animate props if possible
+        // For simple whileInView, we can often get away with direct attributes or a setup loop.
+
+        // Let's try to make it simpler by iterating and applying motion directly if Framer Motion supports it this way.
+        // The typical way is `motion.div` in JSX. Without a virtual DOM, it's trickier.
+        // A common pattern is to select elements and then use Framer Motion's JavaScript API.
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Animate Header
+        const header = document.getElementById('main-header');
+        if (header) {
+          motion(header, {
+            initial: { opacity: 0, y: -50 },
+            animate: { opacity: 1, y: 0 },
+            transition: { duration: 0.8, ease: "easeOut", delay: 0.2 }
+          });
+        }
+
+        // Animate Bento Grid Items on Scroll
+        const bentoItems = document.querySelectorAll('.bento-grid-item');
+        bentoItems.forEach((item, index) => {
+          motion(item, {
+            initial: { opacity: 0, y: 50, scale: 0.95 },
+            whileInView: { opacity: 1, y: 0, scale: 1 },
+            viewport: { once: true, amount: 0.3 }, // amount: 0.3 means 30% of item visible
+            transition: { 
+              duration: 0.6, 
+              ease: "easeOut",
+              // delay: index * 0.1 // Stagger effect
+            }
+          });
+        });
+        
+        // Cyberpunk effect: slight flicker on highlight color elements
+        // This is more complex and can be distracting if not done well.
+        // For now, focusing on smooth Apple-like animations.
+
+        // Apple-like scroll parallax for the main title (more advanced)
+        // const { scrollYProgress } = useScroll();
+        // const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]); 
+        // This requires a React context, so it's not directly usable here.
+        // We can achieve a simpler parallax with direct scroll listeners if needed.
+      });
+    </script>
   </body>
 </html>
-
