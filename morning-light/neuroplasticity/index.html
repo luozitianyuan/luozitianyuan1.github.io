@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神经可塑性揭秘 | Huberman Lab 精华</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.umd.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #0a0a0a; /* Dark background for cyberpunk feel */
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        .bento-box {
+            background-color: rgba(20, 20, 20, 0.7); /* Darker, more translucent */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2); /* Cyan glow border */
+            border-radius: 1.5rem; /* More rounded, Apple-like */
+            padding: 1.5rem;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            position: relative;
+            overflow: hidden; /* Important for pseudo-elements */
+        }
+        .bento-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.15);
+        }
+        .highlight-cyan { color: #00FFFF; } /* Cyan */
+        .highlight-magenta { color: #FF00FF; } /* Magenta */
+        .highlight-yellow { color: #FFFF00; } /* Yellow */
+
+        .title-chinese {
+            font-size: clamp(2.5rem, 10vw, 6rem); /* Responsive large font */
+            font-weight: 900; /* Extra bold */
+            line-height: 1.1;
+        }
+        .title-english {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+        .content-chinese {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 700;
+        }
+        .content-english {
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            font-weight: 400;
+            color: #a0a0a0;
+        }
+        .icon-large {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        /* Subtle glow effect for cyberpunk */
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, rgba(0,255,255,0) 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bento-box:hover .glow-effect::before {
+            opacity: 1;
+        }
+        .content-z-index {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-black text-neutral-200 antialiased">
+
+    <div id="app" class="min-h-screen w-full">
+        <!-- Hero Section -->
+        <motion.section
+            class="h-screen flex flex-col justify-center items-center text-center p-8 sticky top-0"
+            :initial="{ opacity: 0, y: 50 }"
+            :animate="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.8, ease: 'easeOut' }"
+        >
+            <h1 class="title-chinese highlight-cyan">神经可塑性</h1>
+            <p class="title-english text-neutral-400 mb-4">Neuroplasticity Explained</p>
+            <p class="text-xl md:text-2xl text-neutral-300 max-w-2xl">
+                由 <span class="font-semibold highlight-magenta">Andrew Huberman</span> 博士（斯坦福大学神经生物学与眼科学教授）为您揭秘大脑改变的奥秘。
+            </p>
+            <div class="mt-8">
+                <i class="fas fa-arrow-down text-2xl highlight-cyan animate-bounce"></i>
+            </div>
+        </motion.section>
+
+        <!-- Bento Grid Content -->
+        <div class="container mx-auto px-4 py-16 relative z-10 bg-black">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+                <!-- Box 1: What is Neuroplasticity -->
+                <motion.div class="bento-box md:col-span-2" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :viewport="{ once: true, amount: 0.3 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                    <div class="content-z-index">
+                        <i class="fas fa-brain icon-large highlight-cyan"></i>
+                        <h2 class="content-chinese highlight-cyan mb-2">什么是神经可塑性？</h2>
+                        <p class="content-english">What is Neuroplasticity?</p>
+                        <p class="mt-4 text-neutral-300">神经可塑性是神经系统响应经验而改变自身结构和功能的能力。它是学习、记忆、适应环境甚至从损伤中恢复的基础。Huberman 博士强调，这是我们生物学中最重要和充满希望的方面之一。</p>
+                        <p class="mt-2 text-neutral-300">It's the key to learning new things, forgetting painful experiences, and adapting to life's challenges.</p>
+                    </div>
+                    <div class="glow-effect"></div>
+                </motion.div>
+
+                <!-- Box 2: Designed to Change -->
+                <motion.div class="bento-box" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :viewport="{ once: true, amount: 0.3 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                    <div class="content-z-index">
+                        <i class="fas fa-network-wired icon-large highlight-magenta"></i>
+                        <h2 class="content-chinese highlight-magenta mb-2">大脑天生就会改变</h2>
+                        <p class="content-english">Designed to Change</p>
+                        <p class="mt-4 text-neutral-300">我们的神经系统并非仅仅“能够”改变，而是“被设计用来”改变的。婴儿的大脑连接粗略，但对学习高度敏感，经验会不断塑造和优化这些连接。</p>
+                    </div>
+                    <div class="glow-effect"></div>
+                </motion.div>
+
+                <!-- Box 3: Adult vs. Child -->
+                <motion.div class="bento-box" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :viewport="{ once: true, amount: 0.3 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                    <div class="content-z-index">
+                        <i class="fas fa-child icon-large highlight-yellow mr-2"></i><i class="fas fa-user icon-large highlight-yellow"></i>
+                        <h2 class="content-chinese highlight-yellow mb-2">成人与儿童的差异</h2>
+                        <p class="content-english">Adult vs. Child Plasticity</p>
+                        <p class="mt-4 text-neutral-300">儿童和青少年时期，大脑学习能力强，甚至能“被动学习”。成年后（约25岁以后），神经可塑性需要更主动、更专注的努力。神经元新生极少，改变主要通过现有连接的重塑实现。</p>
+                    </div>
+                    <div class="glow-effect"></div>
+                </motion.div>
+
+                <!-- Box 4: The Triad (Large) -->
+                <motion.div class="bento-box lg:col-span-2" :initial="{ opacity: 0, scale: 0.9 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.3 }" :transition="{ duration: 0.6, delay: 0.2 }">
+                    <div class="content-z-index">
+                        <i class="fas fa-atom icon-large highlight-cyan"></i>
+                        <h2 class="content-chinese highlight-cyan mb-3">成人可塑性三要素</h2>
+                        <p class="content-english mb-6">The Triad for Adult Plasticity</p>
+                        <div class="space-y-4">
+                            <p><strong class="highlight-magenta">1. 肾上腺素 (Epinephrine):</strong> 提升警觉性。由强烈情绪（爱、喜悦、恐惧等）触发。</p>
+                            <p><strong class="highlight-yellow">2. 乙酰胆碱 (Acetylcholine):</strong> 增强专注力。如同“聚光灯”，突出重要信息。</p>
+                            <p><strong class="highlight-cyan">3. 注意力 (Attention):</strong> 可塑性的起点。必须有意识地关注你想要改变或学习的内容。</p>
+                        </div>
+                    </div>
+                    <div class="glow-effect"></div>
+                </motion.div>
+
+                <!-- Box 5: Power of Focus -->
+                <motion.div class="bento-box" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :viewport="{ once: true, amount: 0.3 }" :transition="{ duration: 0.5, delay: 0.3 }">
+                    <div class_name="content-z-index">
+                        <i class="fas fa-eye icon-large highlight-magenta"></i>
+                        <h2 class="content-chinese highlight-magenta mb-2">专注的力量</h2>
+                        <p class="content-english">The Power of Focus</p>
+
+                        <p class="mt-4 text-neutral-300">精神专注跟随视觉专注。通过练习将视觉聚焦于一点（例如屏幕上的一个小点），可以训练和提升整体的专注能力，并触发关键神经化学物质的释放。</p>
+                    </div>
+                    <div class="glow-effect"></div>
+                </motion.div>
+
+                <!-- Box 6: Learning & Rest -->
+                <motion.div class_name="bento-box" :initial="{ opacity: 0, x: -20 }" :while-in-view="{ opacity: 1, x: 0 }" :viewport="{ once: true, amount: 0.3 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                    <div class_name="content-z-index">
+                        <i class="fas fa-bed icon-large highlight-yellow"></i> <i class="fas fa-hourglass-half icon-large highlight-yellow"></i>
+                        <h2 class="content-chinese highlight-yellow mb-2">学习与休息</h2>
+                        <p class="content-english">Learning & Rest</p>
+                        <p class="mt-4 text-neutral-300">学习的最佳时长约为90分钟（一个超日节律周期）。实际的神经重塑发生在睡眠期间，尤其是深度睡眠。学习后的短暂休息（如20分钟的NSDR或小憩）也能加速可塑性。专注学习后让思绪漫游片刻也有益处。</p>
+                    </div>
+                    <div class="glow-effect"></div>
+                </motion.div>
+
+                <!-- Box 7: Misconceptions -->
+                <motion.div class_name="bento-box" :initial="{ opacity: 0, x: 20 }" :while-in-view="{ opacity: 1, x: 0 }" :viewport="{ once: true, amount: 0.3 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                    <div class_name="content-z-index">
+                        <i class="fas fa-question-circle icon-large highlight-cyan"></i>
+                        <h2 class="content-chinese highlight-cyan mb-2">常见误解</h2>
+                        <p class="content-english">Common Misconceptions</p>
+                        <p class="mt-4 text-neutral-300">“每一次经历都会改变你的大脑”——对于成年人来说，这并不完全正确。除非满足了特定的神经化学条件（警觉、专注、注意力），否则大脑不会轻易改变。</p>
+                    </div>
+                    <div class="glow-effect"></div>
+                </motion.div>
+                
+                <!-- Box 8: Support -->
+                <motion.div class="bento-box md:col-span-2 lg:col-span-3 text-center" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :viewport="{ once: true, amount: 0.3 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                    <div class="content-z-index">
+                        <i class="fas fa-podcast icon-large highlight-magenta"></i>
+                        <h2 class="content-chinese highlight-magenta mb-2">支持 Huberman Lab 播客</h2>
+                        <p class="content-english">Support the Huberman Lab Podcast</p>
+                        <p class="mt-4 text-neutral-300">在 YouTube 订阅并开启通知，在 Apple Podcasts 给予五星好评并留言，或在 Spotify 订阅下载。分享给朋友和家人，并关注播客赞助商。</p>
+                    </div>
+                    <div class="glow-effect"></div>
+                </motion.div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = document.getElementById('app');
+        const sections = Array.from(app.querySelectorAll('section, .bento-box'));
+
+        // Simple scroll-based animation trigger for Framer Motion elements
+        // This uses the :while-in-view prop which is easier for simple cases.
+        // For more complex scroll-linked animations, you'd use useScroll and useTransform hooks
+        // from Framer Motion directly within a React/Vue component structure.
+        // Since this is plain HTML, we rely on the :while-in-view attribute.
+
+        // Add Framer Motion attributes dynamically if needed, or define them in HTML.
+        // For this example, they are defined in the HTML using a simplified syntax
+        // that we'll process to make it work with the UMD build of Framer Motion.
+
+        sections.forEach(el => {
+            const motionProps = {};
+            if (el.getAttribute(':initial')) motionProps.initial = JSON.parse(el.getAttribute(':initial'));
+            if (el.getAttribute(':animate')) motionProps.animate = JSON.parse(el.getAttribute(':animate'));
+            if (el.getAttribute(':while-in-view')) motionProps.whileInView = JSON.parse(el.getAttribute(':while-in-view'));
+            if (el.getAttribute(':viewport')) motionProps.viewport = JSON.parse(el.getAttribute(':viewport'));
+            if (el.getAttribute(':transition')) motionProps.transition = JSON.parse(el.getAttribute(':transition'));
+            
+            // This is a simplified way to apply Framer Motion props for UMD.
+            // In a real React/Vue app, this would be handled by the framework.
+            // For direct UMD usage, you'd typically create elements with motion.div(),
+            // but since we're enhancing existing HTML, this is a workaround.
+            // For this demo, the :while-in-view and viewport props are key for scroll animations.
+            // The provided UMD build might not directly support these as attributes.
+            // A more robust solution for plain JS would involve IntersectionObserver.
+
+            // Let's simplify to just initial and animate for the hero, 
+            // and rely on whileInView and viewport being handled by some Framer Motion magic
+            // or using IntersectionObserver if they are not.
+            // For the UMD build, it's often easier to control animations imperatively.
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const whileInView = el.getAttribute(':while-in-view') ? JSON.parse(el.getAttribute(':while-in-view')) : null;
+                        const transition = el.getAttribute(':transition') ? JSON.parse(el.getAttribute(':transition')) : {};
+                        if (whileInView) {
+                            motion(el).animate(whileInView, transition);
+                        }
+                        observer.unobserve(el); // Animate once
+                    }
+                });
+            }, { threshold: el.getAttribute(':viewport') ? JSON.parse(el.getAttribute(':viewport')).amount : 0.3 });
+
+            const initial = el.getAttribute(':initial') ? JSON.parse(el.getAttribute(':initial')) : {};
+            motion(el).set(initial); // Apply initial styles
+            
+            if (el.tagName.toLowerCase() === 'section' && el.classList.contains('sticky')) { // Hero section
+                 const animate = el.getAttribute(':animate') ? JSON.parse(el.getAttribute(':animate')) : {};
+                 const transition = el.getAttribute(':transition') ? JSON.parse(el.getAttribute(':transition')) : {};
+                 motion(el).animate(animate, transition);
+            } else {
+                 observer.observe(el);
+            }
+        });
+
+        // Apple-like sticky hero scroll effect (simplified)
+        const heroSection = document.querySelector('section.sticky');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroHeight = heroSection.offsetHeight;
+            
+            // Fade out hero content as it scrolls up
+            let opacity = 1 - (scrollY / (heroHeight * 0.7));
+            opacity = Math.max(0, Math.min(1, opacity)); // Clamp between 0 and 1
+            
+            const heroContent = heroSection.querySelectorAll('h1, p, i');
+            heroContent.forEach(child => {
+                child.style.opacity = opacity;
+            });
+
+            // Scale down hero as it scrolls (optional, can be complex)
+            // let scale = 1 - (scrollY / (heroHeight * 2));
+            // scale = Math.max(0.8, Math.min(1, scale));
+            // heroSection.style.transform = `scale(${scale})`;
+        });
+
+    </script>
+</body>
+</html>
