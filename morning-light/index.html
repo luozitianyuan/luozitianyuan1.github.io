@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨光的力量 - The Power of Morning Light</title>
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/11.2.10/motion.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        .bento-item {
+            background-color: #1a1a1a; /* Darker than body for contrast */
+            border: 1px solid #333;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
+        }
+        .highlight-cyan {
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+        }
+        .highlight-magenta {
+            color: #ff00ff;
+            text-shadow: 0 0 5px rgba(255, 0, 255, 0.7);
+        }
+        .accent-text {
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .super-text {
+            font-weight: 800; /* Extra bold */
+            letter-spacing: -0.02em;
+        }
+        /* For gradient borders if needed later */
+        .gradient-border {
+            position: relative;
+            padding: 2px; /* Border thickness */
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -2px; /* Inverse of padding */
+            border-radius: inherit; /* Or your specific border-radius */
+            background: linear-gradient(to right, rgba(0,255,255,0.5), rgba(255,0,255,0.5));
+        }
+         /* Basic勾线SVG样式 */
+        .line-art-icon {
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="container mx-auto px-4 py-8 md:py-16">
+
+        <!-- Hero Section -->
+        <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            class="text-center mb-16 md:mb-24"
+        >
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 super-text">
+                <span class="highlight-cyan">晨光</span>唤醒
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400">UNLOCK YOUR DAY WITH MORNING SUNLIGHT</p>
+            <p class="mt-4 text-lg text-gray-500">斯坦福神经科学教授 Andrew Huberman 的建议<br/>Stanford Professor Andrew Huberman's Advice</p>
+        </motion.section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+            <!-- Item 1: The Problem -->
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                class="bento-item rounded-xl p-6 md:col-span-2 lg:col-span-2"
+            >
+                <div class="flex items-center mb-3">
+                    <i class="fas fa-mobile-screen-button fa-2x highlight-magenta mr-4"></i>
+                    <div>
+                        <h2 class="text-2xl font-bold">手机的<span class="highlight-magenta">诱惑</span>与<span class="highlight-magenta">局限</span></h2>
+                        <p class="accent-text">THE PHONE'S LIMITATION</p>
+                    </div>
+                </div>
+                <p class="text-gray-300">醒来就想看手机？但手机屏幕的亮度，即使调到最亮，也<strong class="text-white">不足以</strong>有效激活皮质醇峰值，无法让你达到最佳的清醒专注状态，也无益于优化夜间睡眠。</p>
+                <p class="text-sm text-gray-500 mt-2">Phone light isn't bright enough for cortisol spike, alertness, or optimizing sleep.</p>
+            </motion.div>
+
+            <!-- Item 2: The Solution -->
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                class="bento-item rounded-xl p-6 md:col-span-1 lg:col-span-2 flex flex-col items-center justify-center text-center"
+            >
+                 <svg class="w-16 h-16 highlight-cyan mb-4 line-art-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <h2 class="text-3xl font-bold super-text"><span class="highlight-cyan">走向户外</span></h2>
+                <p class="accent-text">THE SIMPLE SOLUTION: GO OUTSIDE</p>
+                <p class="text-gray-300 mt-2">这是激活身体自然节律的关键第一步。</p>
+                <p class="text-sm text-gray-500 mt-1">The critical first step to activate your body's natural rhythms.</p>
+            </motion.div>
+
+            <!-- Item 3: When to Go -->
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                class="bento-item rounded-xl p-6"
+            >
+                <div class="flex items-center mb-3">
+                    <i class="far fa-clock fa-2x highlight-cyan mr-3"></i>
+                    <div>
+                        <h2 class="text-xl font-bold">最佳<span class="highlight-cyan">时机</span></h2>
+                        <p class="accent-text">OPTIMAL TIMING</p>
+                    </div>
+                </div>
+                <ul class="list-disc list-inside text-gray-300 space-y-1">
+                    <li>理想情况：睡醒后 <strong class="text-white">5-15 分钟内</strong>。</li>
+                    <li>务必在：睡醒后 <strong class="text-white">1 小时内</strong>。</li>
+                    <li>光照条件：太阳角度较低时 (清晨)。</li>
+                </ul>
+                 <p class="text-xs text-gray-500 mt-2">Ideally: 5-15 mins post-waking. Certainly: within 1st hour. Best: low solar angle.</p>
+            </motion.div>
+
+            <!-- Item 4: How to View - Clear vs Cloudy -->
+            <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+                class="bento-item rounded-xl p-6 md:col-span-2 lg:col-span-2"
+            >
+                <h2 class="text-xl font-bold mb-1">如何<span class="highlight-cyan">观测</span>阳光</h2>
+                <p class="accent-text mb-3">HOW TO VIEW SUNLIGHT</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-semibold text-white"><i class="fas fa-sun mr-1 text-yellow-400"></i> 晴朗日 CLEAR DAY</h3>
+                        <p class="text-sm text-gray-300">面向太阳。若太阳很低且不刺眼，可短暂直视。若较亮或位置较高，感觉刺眼则<strong class="text-white">切勿直视</strong>，看向太阳方向即可。眨眼无妨。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-white"><i class="fas fa-cloud-sun mr-1 text-gray-400"></i> 阴天 CLOUDY DAY</h3>
+                        <p class="text-sm text-gray-300">仍然要出门！阴天时获取足够光照<strong class="text-white">尤其重要</strong>，需要更长时间。</p>
+                    </div>
+                </div>
+                <div class="mt-4 p-3 bg-red-900/30 rounded-md border border-red-700">
+                    <p class="text-sm text-red-300"><i class="fas fa-exclamation-triangle mr-2"></i><strong class="text-red-200">安全警告:</strong> 任何时候都不要看刺眼的光线，以免损伤眼睛。</p>
+                    <p class="text-xs text-red-500">SAFETY: Never look at light so bright it's painful.</p>
+                </div>
+            </motion.div>
+
+            <!-- Item 5: Duration -->
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                class="bento-item rounded-xl p-6 text-center flex flex-col justify-center"
+            >
+                <h2 class="text-2xl font-bold mb-1">建议<span class="highlight-magenta">时长</span></h2>
+                <p class="accent-text mb-4">RECOMMENDED DURATION</p>
+                <div class="space-y-2">
+                    <p class="text-gray-200">晴天 CLEAR: <strong class="text-4xl super-text highlight-magenta">5</strong> 分钟 MINS</p>
+                    <p class="text-gray-300 text-sm">(约3-7分钟)</p>
+                    <p class="text-gray-200 mt-2">多云 OVERCAST: <strong class="text-3xl super-text highlight-magenta">10</strong> 分钟 MINS</p>
+                    <p class="text-gray-200 mt-2">阴雨 DENSE/RAINY: <strong class="text-3xl super-text highlight-magenta">20-30</strong> 分钟 MINS</p>
+                </div>
+            </motion.div>
+
+            <!-- Item 6: Eyewear -->
+            <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.35 }}
+                class="bento-item rounded-xl p-6"
+            >
+                <h2 class="text-xl font-bold mb-1">关于<span class="highlight-cyan">眼镜</span></h2>
+                <p class="accent-text mb-3">ABOUT EYEWEAR</p>
+                <p class="text-gray-300 mb-2"><i class="fas fa-sunglasses fa-fw mr-2 text-gray-500"></i> <strong class="text-red-400">不要</strong>佩戴太阳镜。NO SUNGLASSES.</p>
+                <p class="text-gray-300"><i class="fas fa-glasses fa-fw mr-2 text-green-400"></i> 近视/远视眼镜或隐形眼镜 <strong class="text-green-300">完全可以</strong>佩戴。镜片上的UV防护也没问题。CORRECTIVE LENSES/CONTACTS ARE FINE (UV protection on them is okay).</p>
+            </motion.div>
+
+            <!-- Item 7: Critical Point 1 - Not Woo Woo -->
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                class="bento-item rounded-xl p-6 md:col-span-3 lg:col-span-4"
+            >
+                <div class="flex items-start">
+                    <div class="text-6xl font-black highlight-cyan mr-6">1</div>
+                    <div>
+                        <h2 class="text-3xl font-bold">这不是<span class="highlight-cyan">玄学</span></h2>
+                        <p class="accent-text">IT'S ROBUST SCIENCE, NOT "WOO-WOO"</p>
+                        <p class="text-gray-300 mt-2">晨间光照是基于核心生理学原理，有成百上千的同行评审研究支持。它是全天保持清醒、夜间安然入睡的<strong class="text-white">最强刺激因素</strong>和<strong class="text-white">基础工具</strong>。</p>
+                        <p class="text-sm text-gray-500 mt-1">Grounded in core physiology, thousands of peer-reviewed papers. Most powerful stimulus for wakefulness & sleep. The foundational power tool.</p>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- Item 8: Critical Point 2 - Artificial vs. Sunlight -->
+             <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                class="bento-item rounded-xl p-6 md:col-span-2 lg:col-span-2"
+            >
+                <div class="flex items-start">
+                    <div class="text-6xl font-black highlight-magenta mr-6">2</div>
+                    <div>
+                        <h2 class="text-3xl font-bold">人造光 <span class="highlight-magenta">vs</span> 阳光</h2>
+                        <p class="accent-text">ARTIFICIAL LIGHT VS. SUNLIGHT</p>
+                        <p class="text-gray-300 mt-2">若日出前醒来且需保持清醒，可开室内灯。但<strong class="text-white">一旦太阳升起，仍需出门获取阳光</strong>。</p>
+                        <p class="text-gray-300 mt-2">室内灯光（包括手机）在早晨<strong class="text-white">不够亮</strong>，无法有效设定生物钟。但<strong class="text-red-400">“魔鬼的转折”</strong>在于：这些灯光在夜间却<strong class="text-red-400">足够亮</strong>以扰乱睡眠。</p>
+                        <p class="text-sm text-gray-500 mt-1">Turn on artificial lights if pre-sunrise & needing to be awake. But get actual sunlight once it's out. Indoor lights are NOT a morning substitute but ARE a nighttime disruptor.</p>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- Item 9: Critical Point 3 - Duration -->
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                class="bento-item rounded-xl p-6 md:col-span-1 lg:col-span-2"
+            >
+                 <div class="flex items-start">
+                    <div class="text-6xl font-black highlight-cyan mr-6">3</div>
+                    <div>
+                        <h2 class="text-3xl font-bold">光照<span class="highlight-cyan">时长</span></h2>
+                        <p class="accent-text">LIGHT EXPOSURE DURATION</p>
+                        <p class="text-gray-300 mt-2">所需时长因天气而异（见上方“建议时长”模块）。关键是保证<strong class="text-white">足够的光子量</strong>进入眼睛。</p>
+                         <p class="text-sm text-gray-500 mt-1">Duration varies by weather. Ensure sufficient photon quantity enters eyes.</p>
+                    </div>
+                </div>
+                 <div class="mt-6 flex justify-around items-baseline">
+                    <div class="text-center">
+                        <i class="fas fa-sun text-3xl text-yellow-400"></i>
+                        <p class="mt-1 text-sm font-semibold">晴天 5 分钟</p>
+                        <p class="text-xs text-gray-500">Clear ~5 MIN</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-cloud-sun text-3xl text-gray-400"></i>
+                        <p class="mt-1 text-sm font-semibold">多云 10 分钟</p>
+                        <p class="text-xs text-gray-500">Overcast ~10 MIN</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-cloud-showers-heavy text-3xl text-blue-400"></i>
+                        <p class="mt-1 text-sm font-semibold">阴雨 20-30 分钟</p>
+                        <p class="text-xs text-gray-500">Dense/Rainy ~20-30 MIN</p>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- Item 10: Crucial Don'ts -->
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                class="bento-item rounded-xl p-6 md:col-span-3 lg:col-span-4 border-2 border-red-500/50"
+            >
+                <h2 class="text-2xl font-bold text-red-400 mb-2"><i class="fas fa-ban mr-2"></i> 重要：<span class="text-red-300">避免事项</span></h2>
+                <p class="accent-text mb-3 text-red-600">CRUCIAL DON'TS</p>
+                <p class="text-gray-300">不要试图透过<strong class="text-red-300">车窗玻璃、室内窗户</strong>或<strong class="text-red-300">太阳镜</strong>获取晨间阳光。这些都会过滤掉大量有益光线，使其效果大打折扣或完全无效。 <strong class="text-white">一定要走到户外！</strong></p>
+                <p class="text-gray-300 mt-2">万不得已（如天气恶劣、安全问题），靠近窗户是<strong class="text-white">最后的选择</strong>，但效果远不如户外。</p>
+                <p class="text-sm text-gray-500 mt-2">Do NOT view through windshields, windows, or sunglasses. They filter too much light. GET OUTSIDE. Window viewing is a last resort.</p>
+            </motion.div>
+
+        </div>
+
+        <motion.footer
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+            class="text-center mt-16 md:mt-24 text-gray-600 text-sm"
+        >
+            <p>内容整理自 Andrew Huberman 教授的播客片段。仅供参考，非医疗建议。</p>
+            <p>Content summarized from Prof. Andrew Huberman's podcast. For informational purposes only, not medical advice.</p>
+            <p>HL CLIPS - Stanford, California</p>
+        </motion.footer>
+
+    </div>
+
+    <script>
+        const { motion, useScroll, useTransform } = Motion; // Assuming Framer Motion is globally available via CDN
+
+        // This is a basic setup. More complex animations would require more JS.
+        // For simple whileInView, Framer Motion handles it mostly declaratively.
+        document.addEventListener('DOMContentLoaded', () => {
+            // Example: If you wanted to programmatically animate all bento items
+            const bentoItems = document.querySelectorAll('.bento-item');
+            bentoItems.forEach((item, index) => {
+                // Framer Motion's whileInView handles this more cleanly in HTML
+                // This is just to show where you might add more JS if needed.
+            });
+        });
+    </script>
+
+</body>
+</html>
