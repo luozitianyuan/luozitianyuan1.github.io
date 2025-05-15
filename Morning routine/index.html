@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最优晨间指南 | Andrew Huberman</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #101012; /* Near black */
+            color: #e0e0e0; /* Light gray for text */
+            overflow-x: hidden;
+        }
+        .bento-cell {
+            background-color: rgba(30, 30, 35, 0.8); /* Darker translucent cell */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(70, 70, 80, 0.5);
+            border-radius: 20px; /* More rounded like Apple cards */
+            padding: 2rem;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-cell:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .chinese-title {
+            font-size: clamp(2.5rem, 6vw, 5rem); /* Responsive large font */
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .english-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+        }
+        .highlight-cyan {
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+        }
+        .highlight-magenta {
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+        }
+        .gradient-text-cyan {
+            background: linear-gradient(90deg, rgba(0,255,255,1) 0%, rgba(0,200,255,0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-text-magenta {
+            background: linear-gradient(90deg, rgba(255,0,255,1) 0%, rgba(255,100,255,0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .icon-bg {
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.05;
+            right: -1rem;
+            bottom: -1rem;
+            pointer-events: none;
+            z-index: 0;
+            color: #4a5568; /* Neutral dark icon bg */
+        }
+        .content-z {
+            position: relative;
+            z-index: 1;
+        }
+        /* For simple line graph visualization */
+        .line-graph {
+            width: 100%;
+            height: 80px;
+            position: relative;
+            margin-top: 1rem;
+        }
+        .line-graph path {
+            stroke-width: 3;
+            fill: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 md:py-16">
+
+        <header class="text-center mb-12 md:mb-20">
+            <motion.h1
+                class="chinese-title gradient-text-cyan mb-2"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                最优晨间<br>
+                <span class="english-subtitle text-neutral-400">The Optimal Morning Routine</span>
+            </motion.h1>
+            <motion.p
+                class="text-xl md:text-2xl text-neutral-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+ 주인공: Andrew Huberman
+                <span>Professor of Neurobiology & Ophthalmology at Stanford, Host of Huberman Lab Podcast</span>
+            </motion.p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+            <!-- Cell 1: Sunlight -->
+            <motion.div
+                class="bento-cell md:col-span-2 lg:row-span-2 relative"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-sun fa-3x mb-4 highlight-cyan"></i>
+                    <h2 class="chinese-title text-3xl md:text-4xl mb-2 gradient-text-cyan">晨光<br><span class="english-subtitle text-neutral-400">Morning Sunlight</span></h2>
+                    <p class="text-neutral-300 text-lg">醒后<strong class="highlight-cyan">1小时内</strong>，让自然光进入眼睛。</p>
+                    <p class="text-neutral-300 mt-2">无需直视太阳，<strong class="highlight-cyan">5-10分钟</strong>即可（阴天则需更久）。</p>
+                    <p class="text-neutral-300 mt-2">这会校准你体内的<strong class="highlight-cyan">生物钟</strong>，重置皮质醇节律。</p>
+                </div>
+                 <i class="fas fa-sun icon-bg transform scale-150 -rotate-12"></i>
+            </motion.div>
+
+            <!-- Cell 2: Sleep -->
+            <motion.div
+                class="bento-cell"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-bed fa-2x mb-3 highlight-magenta"></i>
+                    <h3 class="chinese-title text-2xl mb-1 gradient-text-magenta">睡眠<br><span class="english-subtitle text-neutral-400">Sleep</span></h3>
+                    <p class="text-neutral-300">目标是<strong class="highlight-magenta">80%</strong>的夜晚获得优质睡眠。它是身心健康的基础。</p>
+                </div>
+                <i class="fas fa-moon icon-bg"></i>
+            </motion.div>
+
+            <!-- Cell 3: Cortisol -->
+            <motion.div
+                class="bento-cell"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-chart-line fa-2x mb-3 highlight-cyan"></i>
+                    <h3 class="chinese-title text-2xl mb-1 gradient-text-cyan">皮质醇<br><span class="english-subtitle text-neutral-400">Cortisol Pulse</span></h3>
+                    <p class="text-neutral-300">晨光帮助在<strong class="highlight-cyan">清晨</strong>触发健康的皮质醇脉冲，提升警觉性、专注度和情绪。</p>
+                    <div class="line-graph">
+                        <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                            <path d="M 0 30 Q 15 5, 30 10 T 60 20 T 90 35" stroke="#00ffff" opacity="0.7"/>
+                        </svg>
+                    </div>
+                </div>
+                 <i class="fas fa-wave-square icon-bg"></i>
+            </motion.div>
+
+            <!-- Cell 4: Dopamine -->
+             <motion.div
+                class="bento-cell md:col-span-2 lg:row-span-2"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-brain fa-3x mb-4 highlight-magenta"></i>
+                    <h2 class="chinese-title text-3xl md:text-4xl mb-2 gradient-text-magenta">多巴胺<br><span class="english-subtitle text-neutral-400">Dopamine</span></h2>
+                    <p class="text-neutral-300 text-lg">晨光也促进多巴胺释放。多巴胺驱动<strong class
+                        class="highlight-magenta">动力、渴望与追求</strong>。</p>
+                    <p class="text-neutral-300 mt-2">它也制造肾上腺素，并与<strong class="highlight-magenta">睾酮/雌激素</strong>水平相关。</p>
+                    <p class="text-neutral-300 mt-2">阳光照射皮肤（20-30分钟）可提升性激素和热情。</p>
+                </div>
+                 <i class="fas fa-atom icon-bg transform scale-150 rotate-12"></i>
+            </motion.div>
+
+            <!-- Cell 5: Caffeine -->
+            <motion.div
+                class="bento-cell"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-coffee fa-2x mb-3 highlight-cyan"></i>
+                    <h3 class="chinese-title text-2xl mb-1 gradient-text-cyan">咖啡因<br><span class="english-subtitle text-neutral-400">Caffeine Timing</span></h3>
+                    <p class="text-neutral-300">醒后<strong class="highlight-cyan">60-90分钟</strong>再摄入咖啡因。这有助于清除腺苷，避免午后精力崩溃。</p>
+                </div>
+                <i class="fas fa-mug-hot icon-bg"></i>
+            </motion.div>
+
+            <!-- Cell 6: Temperature -->
+            <motion.div
+                class="bento-cell"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-thermometer-half fa-2x mb-3 highlight-magenta"></i>
+                    <h3 class="chinese-title text-2xl mb-1 gradient-text-magenta">体温<br><span class="english-subtitle text-neutral-400">Body Temperature</span></h3>
+                    <p class="text-neutral-300">核心体温在醒前约<strong class="highlight-magenta">2小时</strong>达最低点，随后上升助您清醒。下午达最高点，傍晚下降助您入眠。</p>
+                </div>
+                <i class="fas fa-temperature-low icon-bg"></i>
+            </motion.div>
+
+
+            <!-- Cell 7: Cold Exposure -->
+            <motion.div
+                class="bento-cell md:col-span-2 lg:col-span-1 xl:col-span-2"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-snowflake fa-2x mb-3 highlight-cyan"></i>
+                    <h3 class="chinese-title text-2xl mb-1 gradient-text-cyan">冷水刺激<br><span class="english-subtitle text-neutral-400">Cold Exposure</span></h3>
+                    <p class="text-neutral-300">短暂（1-3分钟）的冷水浴或冷水澡会<strong class="highlight-cyan">提高核心体温</strong>，释放肾上腺素和长效多巴胺，增强情绪和警觉性。</p>
+                     <p class="text-sm text-neutral-400 mt-2">(例：60°F/15°C 一小时 或 40°F/4°C 20秒)</p>
+                </div>
+                <i class="fas fa-icicles icon-bg"></i>
+            </motion.div>
+            
+            <!-- Cell 8: Jocko's Wake Time -->
+            <motion.div
+                class="bento-cell"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-user-ninja fa-2x mb-3 highlight-magenta"></i>
+                    <h3 class="chinese-title text-2xl mb-1 gradient-text-magenta">Jocko<br><span class="english-subtitle text-neutral-400">Jocko Willink</span></h3>
+                    <p class="text-neutral-300">他的起床时间: <strong class="highlight-magenta">4:15 - 4:30 AM</strong>。</p>
+                </div>
+                <i class="fas fa-clock icon-bg"></i>
+            </motion.div>
+
+            <!-- Cell 9: Circadian Alignment -->
+             <motion.div
+                class="bento-cell xl:col-span-2"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-sync-alt fa-2x mb-3 highlight-cyan"></i>
+                    <h3 class="chinese-title text-2xl mb-1 gradient-text-cyan">生物节律<br><span class="english-subtitle text-neutral-400">Circadian Alignment</span></h3>
+                    <p class="text-neutral-300">每个细胞都有24小时生物钟。使其同步（<strong class="highlight-cyan">Entrainment</strong>）至关重要。失调（如倒时差）会导致消化、免疫和认知问题。</p>
+                </div>
+                <i class="fas fa-infinity icon-bg"></i>
+            </motion.div>
+
+            <!-- Cell 10: Mark Twain Quote -->
+            <motion.div
+                class="bento-cell md:col-span-2 lg:col-span-3 xl:col-span-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+            >
+                <div class="content-z">
+                    <i class="fas fa-quote-left fa-2x mb-3 highlight-magenta"></i>
+                    <h3 class="chinese-title text-2xl mb-1 gradient-text-magenta">晨间箴言<br><span class="english-subtitle text-neutral-400">Morning Wisdom</span></h3>
+                    <blockquote class="text-neutral-200 text-xl italic">
+                        “清晨第一件事就是生吞一只活青蛙，这样接下来的一天里，就不会有更糟糕的事情发生在你身上了。”
+                        <footer class="text-sm text-neutral-400 mt-2">- Mark Twain</footer>
+                    </blockquote>
+                </div>
+                 <i class="fas fa-frog icon-bg"></i>
+            </motion.div>
+
+        </div>
+
+        <footer class="text-center mt-12 md:mt-20 py-8 border-t border-neutral-700">
+            <p class="text-neutral-400">内容提炼自 Andrew Huberman 在 After Skool 频道的分享。</p>
+            <p class="text-neutral-400 mt-2">
+                了解更多: 
+                <a href="https://hubermanlab.com/" target="_blank" class="highlight-cyan hover:underline">Huberman Lab</a> |
+                <a href="https://www.youtube.com/c/AndrewHubermanLab" target="_blank" class="highlight-cyan hover:underline">YouTube</a> |
+                <a href="https://www.instagram.com/hubermanlab/" target="_blank" class="highlight-cyan hover:underline">Instagram</a>
+            </p>
+            <p class="text-sm text-neutral-500 mt-4">由 After Skool 动画呈现。网页概念设计。仅供教育参考。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Simple Framer Motion setup for all motion.div elements
+        // For more complex, per-element animations, you'd define variants and use them.
+        // This generic approach applies a similar animation to all cells with the specified props.
+        // This script block is more for conceptual completeness if more JS-driven animation was needed.
+        // With 'whileInView' and 'viewport={{ once: true }}', much is handled declaratively.
+    </script>
+
+</body>
+</html>
